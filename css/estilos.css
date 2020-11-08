@@ -1,0 +1,124 @@
+/* apply a natural box layout model to all elements, but allowing components to change */
+html {
+    box-sizing: border-box;
+    height: 100%; /* para no tener bordes por default */
+}
+
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+
+
+body {
+    /* Para que abarque todo el color de fondo */
+    height: 100%;
+    /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#e570e7+0,c85ec7+50,a849a3+100 */
+    background: #e570e7; /* Old browsers */
+    background: -moz-linear-gradient(top,  #e570e7 0%, #c85ec7 50%, #a849a3 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(top,  #e570e7 0%,#c85ec7 50%,#a849a3 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom,  #e570e7 0%,#c85ec7 50%,#a849a3 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e570e7', endColorstr='#a849a3',GradientType=0 ); /* IE6-9 */
+    background-attachment: fixed; /* Esto fija el DEGRADADO */
+    /* ------------------------------------------------------------------------------------------ */
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+}
+
+header {
+    text-align: center; /* Permite centrar imagenes dentro de un CONTENEDOR PADRE: header */
+    padding: 40px 0; /* espacio arriba y abajo, no espacio a los lados */
+}
+
+img {
+    max-width: 100%; /* hacemos responsivas todas las imagenes */
+}
+
+.contenedor {
+    /* Para centrar el contenedor */
+    max-width: 1200px;
+    margin: 0 auto;
+    /* -------------------------- */
+}
+
+.hero {
+    margin-bottom: 40px;
+}
+
+h2 {
+    text-align: center;
+    text-transform: uppercase;
+
+}
+
+.lista-productos {
+    padding: 0;
+}
+
+.lista-productos li {
+    /* Esto hace dos columnas cuando el dispositivo es movil */
+    float: left;
+    width: 50%;
+    /* ---------------------------------------------- */
+    padding: 20px;
+    /* --- QUITAMOS DISEÑO */
+    list-style: none;
+    text-align: center;
+
+}
+
+.lista-productos li:nth-child(2n+1) { /* 2n + 1 = 2 (0) + 1*, aplica todo lo que este dentro de este estilo a puros elemtnso IMPARES */
+    clear: both; /* limpia la zona, no permito que ningun elemento se ponga a lado mío, solo abajo */
+}
+
+@media (min-width: 768px) {
+    .lista-productos li {
+        /* para tener 3 columnas en dispositivos más grandes */
+        width: 33.3%;
+    }
+    .lista-productos li:nth-child(2n+1) { 
+        clear: unset; /* restaura el atributo que heredaba para poder reescribirlo, SI NO SE HACE ESTO, se hereda el anterior y se juntan ambos: */
+    }
+    .lista-productos li:nth-child(3n+1) { /* 2n + 1 = 2 (0) + 1*, aplica todo lo que este dentro de este estilo a puros elemtnso IMPARES */
+        clear: both; /* limpia la zona, no permito que ningun elemento se ponga a lado mío, solo abajo */
+    }
+    
+}
+
+.lista-productos li img {
+    border: 10px solid rgba(128, 1, 195, .45);
+    transition: border-color .3s ease-in-out;
+}
+
+.lista-productos li img:hover {
+    border: 10px solid rgba(128, 1, 195, 1)
+}
+
+/* Para el formato del texto PARRAFO y el PRECIO y BOTON */
+.lista-productos li p {
+    font-size: 28px; /* poco más grande que la default */
+    font-weight: bold; /* para hacer negrita la letra */
+    margin: 10px 0 0 0;
+}
+
+span.precio {
+    color: #ffce00;
+    font-size: 40px;
+}
+
+.boton {
+    text-decoration: none;
+    background-color: #ffce00;
+    text-transform: uppercase;
+    padding: 10px 40px;
+    margin-top: 10px; /* esto no afecta porque todos los enlaces tienen un display INLINE, y los display INLINE no se les puede agregar ANCHOS ni MARGINs */
+    /*cambiaremos a display: inline block */
+    display: inline-block; /* y ahora sí aplica el MARGIN-TOP */
+    font-weight: bold;
+    color: #8001c3;
+    transition: background-color .3s ease-in-out; /* agrega una transicion a la hora de hacer hover sobre el boton */
+}
+
+.boton:hover {
+    background-color: #ebbc00;
+}
+
